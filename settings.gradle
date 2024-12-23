@@ -1,0 +1,16 @@
+include 'subproject'
+
+rootProject.children.each {project ->
+    String fileName = project.name
+    def path = "${project.name}/${fileName}.gradle"
+    def exist = new File(path).exists()
+    logger.trace("File ${path} exists: ${exist}")
+    if (exist) {
+        project.buildFileName = "${fileName}.gradle"
+    } else {
+        project.buildFileName = "${fileName}.gradle.kts"
+    }
+
+}
+
+rootProject.name = projectName

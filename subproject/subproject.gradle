@@ -1,0 +1,11 @@
+tasks.register("initApp") {
+    doLast {
+        println "Initializing subproject"
+    }
+}
+
+idea.project.settings {
+    taskTriggers {
+        beforeSync tasks.getByName("initApp")
+    }
+}
